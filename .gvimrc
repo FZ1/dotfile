@@ -1,3 +1,0 @@
-syntax enable
-colorscheme monokai
-
