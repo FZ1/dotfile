@@ -4,7 +4,8 @@ scriptencoding utf-8
 " カラー設定:
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+colorscheme monokai
 
 "---------------------------------------------------------------------------
 " フォント設定:

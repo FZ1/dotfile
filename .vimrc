@@ -20,15 +20,22 @@ set smartindent
 " 行番号を非表示 (number:表示)
 set number
 " タブや改行を表示 (list:表示)
-set nolist
+set list
+" シンタックスハイライト
+syntax on
 " どの文字でタブや改行を表示するかを設定
-set listchars=tab:>-,extends:<,trail:-,eol:<
+set listchars=tab:>-,trail:-,eol:<,extends:<,precedes:<,nbsp:%
 " 長い行を折り返して表示 (nowrap:折り返さない)
 set nowrap
 " カラースキームの設定
 colorscheme monokai
 " カーソル業の強調
 set cursorline
+" ターミナルのタイトル表示
+set title
+" 対応する括弧を一瞬強調
+set showmatch
+
 
 " 検索の設定
 " 大文字小文字を無視
@@ -39,5 +46,12 @@ set smartcase
 
 " 開いてるファイルのディレクトリにカレントディレクトリを変更する
 set autochdir
+" ステータスライン表示設定
+" 0: 表示しない
+" 1: ウィンドウが2つ以上の時表示
+" 2: 常に表示
+set laststatus=2
+" ステータスラインの表示項目設定
+set statusline=%F%r%h%=%l/%L,%c/%V%8p%%
 
 
