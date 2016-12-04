@@ -20,7 +20,7 @@ set smartindent
 " 行番号を非表示 (number:表示)
 set number
 " タブや改行を表示 (list:表示)
-set list
+set nolist
 " シンタックスハイライト
 syntax on
 " どの文字でタブや改行を表示するかを設定
@@ -42,6 +42,8 @@ set showmatch
 set ignorecase
 " 検索対象に大文字小文字が混在する場合、大文字小文字を識別する
 set smartcase
+" 検索対象文字列をハイライト
+set hlsearch
 
 
 " 開いてるファイルのディレクトリにカレントディレクトリを変更する
