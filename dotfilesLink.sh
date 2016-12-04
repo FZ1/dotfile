@@ -1,8 +1,8 @@
 #!/bin/sh
-ln -sf $DOTFILEPATH/.vimrc ~/.vimrc
-ln -sf $DOTFILEPATH/.gvimrc ~/.gvimrc
-ln -sf $DOTFILEPATH/colors ~/.vim
-ln -sf $DOTFILEPATH/ftdetect ~/.vim
-ln -sf $DOTFILEPATH/indent ~/.vim
-ln -sf $DOTFILEPATH/autoload ~/.vim
-ln -sf $DOTFILEPATH/bitmaps ~/.vim
+ln -sf $DOTFILEPATH/.vimrc $HOME/.vimrc
+ln -sf $DOTFILEPATH/.gvimrc $HOME/.gvimrc
+ln -sf $DOTFILEPATH/colors $HOME/.vim
+ln -sf $DOTFILEPATH/ftdetect $HOME/.vim
+ln -sf $DOTFILEPATH/indent $HOME/.vim
+ln -sf $DOTFILEPATH/autoload $HOME/.vim
+ln -sf $DOTFILEPATH/bitmaps $HOME/.vim
