@@ -1,3 +1,66 @@
+"dein Scripts-----------------------------
+if &compatible
+	  set nocompatible               " Be iMproved
+	  endif
+
+	  " Required:
+	  set runtimepath+=/home/ubuntu/.cache/dein/repos/github.com/Shougo/dein.vim
+
+	  " Required:
+	  call dein#begin('/home/ubuntu/.cache/dein')
+
+	  " Let dein manage dein
+	  " Required:
+	  call dein#add('Shougo/dein.vim')
+
+	  " Add or remove your plugins here:
+	  call dein#add('Shougo/neosnippet.vim')
+	  call dein#add('Shougo/neosnippet-snippets')
+
+	  " 追加
+	  call dein#add('Shougo/neocomplete.vim')
+	  call dein#add('Shougo/unite.vim')
+
+	  " You can specify revision/branch/tag.
+	  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+	  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+	  " Required:
+	  call dein#end()
+
+	  " Required:
+	  filetype plugin indent on
+	  syntax enable
+
+	  " If you want to install not installed plugins on startup.
+	  if dein#check_install()
+	    call dein#install()
+	  endif
+"End dein Scripts-------------------------
+
+"start neosnippet用設定-------------------------------
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+  endif
+"end  neosnippet用設定-------------------------------
+
+
+
+
 scriptencoding utf-8
 
 set ts=4 sts=4 sw=4 tw=0
@@ -44,6 +107,8 @@ set ignorecase
 set smartcase
 " 検索対象文字列をハイライト
 set hlsearch
+" インクリメンタルサーチ
+set incsearch
 
 
 " 開いてるファイルのディレクトリにカレントディレクトリを変更する
@@ -56,4 +121,7 @@ set laststatus=2
 " ステータスラインの表示項目設定
 set statusline=%F%r%h%=%l/%L,%c/%V%8p%%
 
+
+set tags+=$HOME/soft/glibc/glibc-2.23/tags
+set tags+=/usr/src/linux-4.8.12/tags
 
