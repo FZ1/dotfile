@@ -21,6 +21,11 @@ if &compatible
 	  call dein#add('Shougo/neocomplete.vim')
 	  call dein#add('Shougo/unite.vim')
 	  call dein#add('honza/vim-snippets')
+	  call dein#add('thinca/vim-quickrun')
+	  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+	  call dein#add('osyo-manga/shabadou.vim')
+	  call dein#add('osyo-manga/vim-watchdogs')
+	  call dein#add('jceb/vim-hier')
 
 	  " You can specify revision/branch/tag.
 	  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -132,6 +137,66 @@ if has('conceal')
 endif
 "end  neosnippet用設定-------------------------------
 
+"Start QuickRun setting------------------------------
+" 出力先
+" 成功した場合：quickrun 専用の出力バッファ
+" 失敗した場合：quickfix を :copen で開く
+" バッファの開き方：botright 8sp
+"
+" コマンドの実行は vimproc.vim を使用する
+" runner に vimproc を設定
+" runner/vimproc/updatetime には更新するタイミングを設定
+" この値が大きいとコンパイルが終了していても
+" 結果が出力されるまでに時間がかかる可能性がある。
+let g:quickrun_config = {
+\   "_" : {
+\       "outputter" : "error",
+\       "outputter/error/success" : "buffer",
+\       "outputter/error/error"   : "quickfix",
+\       "outputter/buffer/split" : ":botright 8sp",
+\       "outputter/quickfix/open_cmd" : "copen",
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 500,
+\   },
+\   "c/gcc" : {
+\       "cmdopt" : "-std=c99 -Wall -g -O0",
+\   },
+\   "c/watchdogs_checker" : {
+\       "type" : "watchdogs_checker/gcc",
+\   },
+\   "watchdogs_checker/gcc" : {
+\       "cmdopt" : "-std=c99 -Wall -g -o0",
+\   },
+\}
+
+" この関数に g:quickrun_config を渡す
+" この関数で g:quickrun_config にシンタックスチェックを行うための設定を追加する
+" 関数を呼び出すタイミングはユーザの g:quickrun_config 設定後
+call watchdogs#setup(g:quickrun_config)
+
+" 書き込み後にシンタックスチェックを行う
+let g:watchdogs_check_BufWritePost_enable = 1
+
+" filetype ごとに有効無効を設定することも出来る
+let g:watchdogs_check_BufWritePost_enables = {
+\   "cpp" : 0, 
+\   "haskell" : 1,
+\}
+
+" :QuickRun 時に quickfix の中身をクリアする
+" こうしておかないと quickfix の中身が残ったままになってしまうため
+let s:hook = {
+\   "name" : "clear_quickfix",
+\   "kind" : "hook",
+\}
+
+function! s:hook.on_normalized(session, context)
+    call setqflist([])
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
+"End QuickRun setting------------------------------
 
 
 
