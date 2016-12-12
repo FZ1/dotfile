@@ -1,4 +1,6 @@
-"dein Scripts-----------------------------
+"===========================================================================
+" Start dein Scripts
+"===========================================================================
 if &compatible
 	  set nocompatible               " Be iMproved
 	  endif
@@ -42,9 +44,10 @@ if &compatible
 	  if dein#check_install()
 	    call dein#install()
 	  endif
-"End dein Scripts-------------------------
 
-"Start neocomplete Setting----------------
+"===========================================================================
+"Start neocomplete Setting
+"===========================================================================
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -103,21 +106,27 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"End neocomplete Setting----------------
 
-"start neosnippet用設定-------------------------------
+let g:neocomplete#include_paths = {
+  \ 'c'    : '.,/usr/include',
+  \ }
+
+"===========================================================================
+"start neosnippet用設定
+"===========================================================================
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -135,9 +144,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-"end  neosnippet用設定-------------------------------
 
-"Start QuickRun setting------------------------------
+"===========================================================================
+" Start QuickRun setting
+"===========================================================================
 " 出力先
 " 成功した場合：quickrun 専用の出力バッファ
 " 失敗した場合：quickfix を :copen で開く
@@ -196,8 +206,16 @@ endfunction
 
 call quickrun#module#register(s:hook, 1)
 unlet s:hook
-"End QuickRun setting------------------------------
 
+"===========================================================================
+" vim-heirの設定
+"===========================================================================
+"execute 'highlight ucurl_my ctermbg=DarkRed cterm=undercurl'
+"let g:hier_highlight_group_qf = 'ucurl_my'
+
+let g:hier_enabled              = 1
+
+"===========================================================================
 
 
 scriptencoding utf-8
