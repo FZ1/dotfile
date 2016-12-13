@@ -121,7 +121,7 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 let g:neocomplete#include_paths = {
-  \ 'c'    : '.,/usr/include',
+  \ 'c'    : '.,/usr/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1/',
   \ }
 
 "===========================================================================
@@ -158,6 +158,13 @@ endif
 " runner/vimproc/updatetime には更新するタイミングを設定
 " この値が大きいとコンパイルが終了していても
 " 結果が出力されるまでに時間がかかる可能性がある。
+
+" , 区切りで複数のディレクトリを設定する事ができる
+" setlocal path+=.,/usr/includ,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
+let $CPP_INCLUDE_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1"
+setlocal path+=/usr/includ
+setlocal path+=$CPP_INCLUDE_PATH
+
 let g:quickrun_config = {
 \   "_" : {
 \       "outputter" : "error",
