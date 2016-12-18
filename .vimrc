@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 "===========================================================================
 " Start dein Scripts
 "===========================================================================
@@ -28,6 +30,7 @@ if &compatible
 	  call dein#add('osyo-manga/shabadou.vim')
 	  call dein#add('osyo-manga/vim-watchdogs')
 	  call dein#add('jceb/vim-hier')
+	  call dein#add('scrooloose/nerdtree')
 
 	  " You can specify revision/branch/tag.
 	  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
@@ -218,9 +221,12 @@ unlet s:hook
 let g:hier_enabled              = 1
 
 "===========================================================================
+" NERDTreeの設定
+"===========================================================================
 
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
-scriptencoding utf-8
+"===========================================================================
 
 set ts=4 sts=4 sw=4 tw=0
 
@@ -281,6 +287,8 @@ set autochdir
 set laststatus=2
 " ステータスラインの表示項目設定
 set statusline=%F%r%h%=%l/%L,%c/%V%8p%%
+set wildmenu
+set wildmode=list:full
 
 
 " set tags+=$HOME/soft/glibc/glibc-2.23/tags
