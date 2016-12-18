@@ -121,7 +121,7 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 let g:neocomplete#include_paths = {
-  \ 'c'    : '.,/usr/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1/',
+  \ 'c'    : '.,/usr/include,/usr/local/include,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1/',
   \ }
 
 "===========================================================================
@@ -163,6 +163,7 @@ endif
 " setlocal path+=.,/usr/includ,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
 let $CPP_INCLUDE_PATH = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1"
 setlocal path+=/usr/includ
+setlocal path+=/usr/local/include
 setlocal path+=$CPP_INCLUDE_PATH
 
 let g:quickrun_config = {
@@ -193,12 +194,6 @@ call watchdogs#setup(g:quickrun_config)
 
 " 書き込み後にシンタックスチェックを行う
 let g:watchdogs_check_BufWritePost_enable = 1
-
-" filetype ごとに有効無効を設定することも出来る
-let g:watchdogs_check_BufWritePost_enables = {
-\   "cpp" : 0, 
-\   "haskell" : 1,
-\}
 
 " :QuickRun 時に quickfix の中身をクリアする
 " こうしておかないと quickfix の中身が残ったままになってしまうため
@@ -288,6 +283,6 @@ set laststatus=2
 set statusline=%F%r%h%=%l/%L,%c/%V%8p%%
 
 
-set tags+=$HOME/soft/glibc/glibc-2.23/tags
-set tags+=/usr/src/linux-4.8.12/tags
+" set tags+=$HOME/soft/glibc/glibc-2.23/tags
+" set tags+=/usr/src/linux-4.8.12/tags
 
